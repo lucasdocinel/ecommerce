@@ -37,7 +37,79 @@
             </div>
         </div>
     </div>
+    
+    <br><br><br>
+    <!-- Produtos Relacionados -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="display-6 fw-bolder">Produtos Relacionados</h2>
+            
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for related_product in related_products %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ related_product.image.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ related_product.name }}</h5>
+                            <p class="card-text">{{ related_product.description }}</p>
+                            <p class="card-text">{{ related_product.price }}</p>
+                            <a href="#" class="btn btn-outline-dark">Ver Produto</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="display-6 fw-bolder">Avaliações dos Clientes</h2>
+            
+            <!-- Comentários -->
+            <div class="mb-3">
+                <h3 class="h5">Deixe sua Avaliação</h3>
+                <form id="review-form">
+                    <!-- Adicione campos do formulário conforme necessário, como nome, e-mail, classificação, etc. -->
+                    <div class="mb-3">
+                        <label for="review-text" class="form-label">Comentário:</label>
+                        <textarea class="form-control" id="review-text" rows="3"></textarea>
+                    </div>
+                    
+                    <!-- Adicione mais campos conforme necessário -->
+
+                    <button type="button" class="btn btn-primary" id="submit-review">Enviar Avaliação</button>
+                </form>
+            </div>
+
+            <!-- Lista de Avaliações -->
+            <div id="review-list">
+                <!-- As avaliações serão exibidas aqui dinamicamente usando JavaScript -->
+            </div>
+        </div>
+    </div>
 </section>
+
+<script>
+    // Adicione a lógica JavaScript para manipular as avaliações aqui
+    // Exemplo: quando o botão de enviar avaliação for clicado, adicione a avaliação à lista de avaliações
+
+    $(document).on('click', '#submit-review', function(e){
+        e.preventDefault();
+        // Lógica para enviar a avaliação via AJAX e adicionar à lista de avaliações
+        // ...
+
+        // Exemplo de como adicionar uma avaliação à lista
+        var reviewText = $('#review-text').val();
+        var reviewHtml = '<div class="mb-3">' +
+                            '<strong>Usuário:</strong> Anônimo<br>' +
+                            '<strong>Comentário:</strong> ' + reviewText +
+                         '</div>';
+        $('#review-list').append(reviewHtml);
+    });
+</script>
 
 <script>
     //Check if button pressed
